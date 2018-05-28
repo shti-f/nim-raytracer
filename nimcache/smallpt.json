@@ -1,0 +1,10 @@
+{"compile":[
+["/Users/nao/Documents/ray/nim-ray/nimcache/smallpt.c", "clang -c  -w  -I/usr/local/Cellar/nim/0.17.2/nim/lib -o /Users/nao/Documents/ray/nim-ray/nimcache/smallpt.o /Users/nao/Documents/ray/nim-ray/nimcache/smallpt.c"],
+],
+"link":[
+"/Users/nao/Documents/ray/nim-ray/nimcache/smallpt.o",
+"/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_system.o",
+"/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_math.o"
+],
+"linkcmd": "clang   -o /Users/nao/Documents/ray/nim-ray/smallpt  /Users/nao/Documents/ray/nim-ray/nimcache/smallpt.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_system.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_math.o  -lm   -ldl"
+}
