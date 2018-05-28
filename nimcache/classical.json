@@ -4,12 +4,11 @@
 "link":[
 "/Users/nao/Documents/ray/nim-ray/nimcache/classical.o",
 "/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_system.o",
-"/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_math.o",
-"/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_random.o",
 "/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_times.o",
 "/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_strutils.o",
 "/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_parseutils.o",
+"/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_math.o",
 "/Users/nao/Documents/ray/nim-ray/nimcache/stdlib_algorithm.o"
 ],
-"linkcmd": "clang   -o /Users/nao/Documents/ray/nim-ray/classical  /Users/nao/Documents/ray/nim-ray/nimcache/classical.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_system.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_math.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_random.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_times.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_strutils.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_parseutils.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_algorithm.o  -lm   -ldl"
+"linkcmd": "clang   -o /Users/nao/Documents/ray/nim-ray/classical  /Users/nao/Documents/ray/nim-ray/nimcache/classical.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_system.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_times.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_strutils.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_parseutils.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_math.o /Users/nao/Documents/ray/nim-ray/nimcache/stdlib_algorithm.o  -lm   -ldl"
 }

@@ -1,13 +1,11 @@
 import math
+export math
 
 # Vector3の定義
 type Vector3 = array[0..2, float]
 
-proc vinit(): Vector3 =
-    [0.0, 0.0, 0.0]
-
-proc vinit(a: float, b: float, c: float): Vector3 =
-    [a, b, c]
+proc vinit(x = 0.0, y = 0.0, z = 0.0): Vector3 =
+    [x, y, z]
 
 proc `$` (a: Vector3): string =
     "[" & $a[0] & ", " & $a[1] & ", " & $a[2] & "]"
@@ -37,4 +35,4 @@ proc norm(this: Vector3): float =
     this.dot(this).sqrt
 
 proc normalize(this: Vector3): Vector3 =
-     this * (1 / this.norm)
+    this * (1 / this.norm)
