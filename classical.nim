@@ -6,7 +6,7 @@ const
     height = 512
 
 # Sphereの配置
-let spheres: seq[Sphere] = @[
+let spheres = [
     sinit(0.3, vinit(0, 0, 1)),
     # sinit(0.5, vinit(0, 0, 3)),
     # sinit(1e5, vinit(1e5+1000, 0, 1)), # Left
@@ -18,16 +18,16 @@ let spheres: seq[Sphere] = @[
 ]
 
 # imgに格納
-var img: array[1..width, array[1..height, Vector3]]
-for x in low(img)..high(img): # 右にx、下にy、奥にz
-    for y in low(img[x])..high(img[x]):
+var img: array[width, array[height, Vector3]]
+for x in 0..<width: # 右にx、下にy、奥にz
+    for y in 0..<height:
         # z軸負方向にあるスクリーンから原点に向けてrayを飛ばす
         var o = vinit((2 * x - width) / width, (2 * y - height) / height, -1.0)
         var ray = rinit(o, (vinit() - o).normalize)
         # sphereとの衝突判定
         var near = Intersection(distance: 1e15) # 一番近いsphereを格納する
-        for sphere in spheres:
-            var intersection = intersect(ray, sphere)
+        for i in 0..<spheres.len:
+            var intersection = intersect(ray, spheres[i])
             if intersection != nil and intersection.distance < near.distance:
                 near = intersection
         img[x][y] = near.position

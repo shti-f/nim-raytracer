@@ -2,13 +2,13 @@ import math
 export math
 
 # Vector3の定義
-type Vector3 = array[0..2, float]
+type Vector3 = array[3, float]
 
 proc vinit(x = 0.0, y = 0.0, z = 0.0): Vector3 =
     [x, y, z]
 
-proc `$` (a: Vector3): string =
-    "[" & $a[0] & ", " & $a[1] & ", " & $a[2] & "]"
+# proc `$` (a: Vector3): string =
+#     "[" & $a[0] & ", " & $a[1] & ", " & $a[2] & "]"
 
 proc `+`(left: Vector3, right: Vector3): Vector3 =
     [left[0] + right[0], left[1] + right[1], left[2] + right[2]]
