@@ -1,3 +1,5 @@
+import math
+
 # clampとtoInt
 proc clamp(x: float): float =
     if x < 0:
@@ -8,10 +10,10 @@ proc clamp(x: float): float =
         x
 
 proc to255(x: float): int =
-    int(clamp(x) * 255)
+    int(pow(clamp(x), 1) * 255)
 
 # ppmの出力
-proc ppmFileWrite(fileName: string, img: auto) =
+proc ppmFileWrite*(fileName: string, img: auto) =
     var
         f : File = open("img/" & fileName ,FileMode.fmWrite)
         width = img.len

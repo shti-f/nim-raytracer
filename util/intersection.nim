@@ -1,21 +1,12 @@
-import math
-export math
+include vector3, ray, objects
 
-# Sphereの定義
-type Sphere = ref object of RootObj
-    radius: float
-    position: Vector3
-
-proc sinit(radius: float, position: Vector3): Sphere =
-    Sphere(radius: radius, position: position)
-
-type Intersection = ref object of RootObj
-    distance: float
-    position: Vector3
-    normal: Vector3 # 法線ベクトル
+type Intersection* = ref object of RootObj
+    distance*: float
+    position*: Vector3
+    normal*: Vector3 # 法線ベクトル
 
 # 衝突判定
-proc intersect(r: Ray, sphere: Sphere): Intersection =
+proc intersect*(r: Ray, sphere: Sphere): Intersection =
     var
         po = r.origin - sphere.position
         det = pow(r.direction.dot(po), 2) - po.dot(po) + pow(sphere.radius, 2) # rayとsphereの判別式

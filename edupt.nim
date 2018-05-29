@@ -5,6 +5,11 @@ const
     width = 512
     height = 512
 
+# cameraの配置
+var
+    camera_position = vinit(50, 50, -220)
+    camera_direction = vinit(0, -0.04, 1).normalize
+
 # sphereの配置
 let spheres = [
     sinit(0.3, vinit(0, 0, 1), vinit(), vinit(0.99, 0.99, 0.99)),
