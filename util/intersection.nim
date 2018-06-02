@@ -4,6 +4,7 @@ type Intersection* = ref object of RootObj
     distance*: float
     position*: Vector3
     normal*: Vector3 # 法線ベクトル
+    color*: Vector3
 
 # 衝突判定
 proc intersect*(r: Ray, sphere: Sphere): Intersection =
@@ -23,4 +24,4 @@ proc intersect*(r: Ray, sphere: Sphere): Intersection =
     var
         position = r.origin + distance * r.direction
         normal = (position - sphere.position).normalize
-    return Intersection(distance: distance, position: position, normal: normal)
+    return Intersection(distance: distance, position: position, normal: normal, color: sphere.color)

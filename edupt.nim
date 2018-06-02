@@ -6,9 +6,13 @@ const
     height = 512
 
 # cameraの配置
-var
-    camera_position = vinit(50, 50, -220)
-    camera_direction = vinit(0, -0.04, 1).normalize
+type Camera = ref object of RootObj
+    position: Vector3
+    direction: Vector3
+
+let camera = Camera(position: vinit(50, 50, -220), direction: vinit(0, -0.04, 1).normalize)
+
+
 
 # sphereの配置
 let spheres = [
@@ -35,7 +39,7 @@ for x in 0..<width: # 右にx、下にy、奥にz
             var intersection = intersect(ray, spheres[i])
             if intersection != nil and intersection.distance < near.distance:
                 near = intersection
-        img[x][y] = near.normal
+        img[x][y] = near.color
 
 # 出力
-ppmFileWrite("img" & getTime().getLocalTime.format("yyyyMMdd-HHmmss") & ".ppm", img)
+ppmFileWrite("img" & getTime().local.format("yyyyMMdd-HHmmss") & ".ppm", img)

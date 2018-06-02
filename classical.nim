@@ -33,4 +33,4 @@ for x in 0..<width: # 右にx、下にy、奥にz
         img[x][y] = near.normal
 
 # 出力
-ppmFileWrite("img" & getTime().getLocalTime.format("yyyyMMdd-HHmmss") & ".ppm", img)
+ppmFileWrite("img" & getTime().local.format("yyyyMMdd-HHmmss") & ".ppm", img)
