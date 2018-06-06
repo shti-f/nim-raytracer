@@ -1,8 +1,0 @@
-P3
-# The P3 means colors are in ASCII, then 2 columns and 2 rows, then 255 for max color, then RGB triplets
-2 2
-255
-0 0 180
-0 0 147
-0 0 255
-0 0 180
