@@ -10,7 +10,7 @@ proc clamp(x: float): float =
         x
 
 proc to255(x: float): int =
-    int(pow(clamp(x), 1) * 255)
+    int(clamp(x) * 255)
 
 # ppmの出力
 proc ppmFileWrite*(fileName: string, img: auto) =
@@ -28,4 +28,4 @@ proc ppmFileWrite*(fileName: string, img: auto) =
     f.writeLine "255"
     for y in low(img[0])..high(img[0]):
         for x in low(img)..high(img):
-            f.writeLine $to255(img[x][y][0]) & " " & $to255(- img[x][y][1]) & " " & $to255(img[x][y][2])
+            f.writeLine $to255(img[x][y][0]) & " " & $to255(img[x][y][1]) & " " & $to255(img[x][y][2])
