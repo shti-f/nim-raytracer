@@ -5,8 +5,5 @@ type Sphere* = ref object of RootObj
     emission*: Vector3
     color*: Vector3
 
-proc sinit*(radius: float, position: Vector3, emission = vinit(), color: Vector3): Sphere =
+proc sinit*(radius: float, position: Vector3, emission = vector3(), color: Vector3): Sphere =
     Sphere(radius: radius, position: position, emission: emission, color: color)
-
-
-

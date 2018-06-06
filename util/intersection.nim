@@ -1,4 +1,4 @@
-include vector3, ray, objects
+include vector3, ray, objects, constant
 
 type Intersection* = ref object of RootObj
     distance*: float
@@ -11,13 +11,12 @@ proc intersect*(r: Ray, sphere: Sphere): Intersection =
     var
         po = r.origin - sphere.position
         det = pow(r.direction.dot(po), 2) - po.dot(po) + pow(sphere.radius, 2) # rayとsphereの判別式
-        EPS = 1e-5
     if det < 0: # 判別式負、当たらない
         return nil
     var
         tminus = - r.direction.dot(po) - det.sqrt
         tplus = - r.direction.dot(po) + det.sqrt
-    if tminus < EPS and tplus < EPS: # 近すぎるrayと両方マイナスは排除
+    if tminus < kEPS and tplus < kEPS: # 近すぎるrayと両方マイナスは排除
         return nil
     var distance =
         if tminus < 0: tplus # マイナスがカメラより後ろにある場合

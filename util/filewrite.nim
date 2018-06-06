@@ -1,4 +1,4 @@
-import math
+import math, times
 
 # clampとtoInt
 proc clamp(x: float): float =
@@ -13,8 +13,9 @@ proc to255(x: float): int =
     int(clamp(x) * 255)
 
 # ppmの出力
-proc ppmFileWrite*(fileName: string, img: auto) =
+proc ppmFileWrite*(img: auto) =
     var
+        fileName = "img" & getTime().local.format("yyyyMMdd-HHmmss") & ".ppm"
         f : File = open("img/" & fileName ,FileMode.fmWrite)
         width = img.len
         height = img[0].len

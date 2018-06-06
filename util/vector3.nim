@@ -3,7 +3,7 @@ import math
 # Vector3の定義
 type Vector3* = array[3, float]
 
-proc vinit*(x = 0.0, y = 0.0, z = 0.0): Vector3 =
+proc vector3*(x = 0.0, y = 0.0, z = 0.0): Vector3 =
     [x, y, z]
 
 # proc `$` (a: Vector3): string =
