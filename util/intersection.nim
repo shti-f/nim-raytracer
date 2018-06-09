@@ -1,5 +1,3 @@
-include vector3, ray, objects, constant
-
 type Intersection* = ref object of RootObj
     distance*: float
     position*: Vector3
