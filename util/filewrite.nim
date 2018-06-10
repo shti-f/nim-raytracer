@@ -21,7 +21,7 @@ proc ppmFileWrite*(img: auto) =
         height = img[0].len
     defer :
         close(f)
-        echo "output: " & fileName
+        echo "export: " & fileName
         echo "done"
     f.writeLine "P3"
     f.writeLine "# The P3 means colors are in ASCII, then " & $width & " columns and " & $height & " rows, then 255 for max color, then RGB triplets"

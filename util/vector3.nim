@@ -28,7 +28,7 @@ proc dot*(left: Vector3, right: Vector3): float =
     left[0] * right[0] + left[1] * right[1] + left[2] * right[2]
 
 proc cross*(left: Vector3, right: Vector3): Vector3 =
-    [left[1] * right[2] - right[2] * left[1], left[2] * right[0] - right[0] * left[2], left[0] * right[1] - right[1] * left[0]]
+    [left[1] * right[2] - left[2] * right[1], left[2] * right[0] - left[0] * right[2], left[0] * right[1] - left[1] * right[0]]
 
 proc mult*(left: Vector3, right: Vector3): Vector3 = #色の計算に使うらしい
     [left[0] * right[0], left[1] * right[1], left[2] * right[2]]

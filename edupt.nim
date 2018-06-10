@@ -10,7 +10,7 @@ type Camera = ref object of RootObj
     pinhole: Vector3
 
 let camera = Camera(position: vector3(0, 0, 5), pinhole: vector3(0, 0, 4))
-  
+
 const samples = 10 # １つのピクセルからrayを飛ばす回数
 
 # imgに格納
@@ -21,16 +21,8 @@ for x in 0..<width: # 右にx、下にy、奥にz
         var o = camera.position - vector3((width - 2 * x) / width, (height - 2 * y) / height, 0)
         var ray = rinit(camera.pinhole, (camera.pinhole - o).normalize)
         img[x][y] = vector3()
-        # for i in 0..<samples:
-        #     img[x][y] = img[x][y] + radiance(ray, 0) / samples
-
-        # sphereとの衝突判定
-        var near = Intersection(distance: 1e6) # 一番近いsphereを格納する
-        for idx in 0..<spheres.len:
-            var intersection = intersect(ray, spheres[idx])
-            if intersection != nil and intersection.distance < near.distance:
-                near = intersection
-        img[x][y] = radiance(ray, 0, near)
+        for i in 0..<samples:
+            img[x][y] = img[x][y] + radiance(ray, 0) / samples
 
 # 出力
 ppmFileWrite(img)
