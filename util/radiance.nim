@@ -27,7 +27,8 @@ proc radiance* (ray: Ray, depth: int): Vector3 =
     # コサイン項を使った重点的サンプリング
     let
         phi = 2 * kPI * rand(1.0) # 半球のxy方向の回転
-        theta = arccos(rand(1.0)) # z方向の角度
-    var new_ray = Ray(origin: intersection.position, direction: normalize(u * sin(phi) * cos(theta) + v * sin(phi) * sin(theta)  + w * cos(theta)))
+        theta = arccos(rand(1.0)) # z方向、仰角
+    var new_ray = Ray(origin: intersection.position, direction: normalize(u * cos(phi) * cos(theta) + v * sin(phi) * cos(theta)  + w * sin(theta)))
+    # return new_ray.direction
     result = result + radiance(new_ray, depth + 1) # incoming_radiance
     result = mult(intersection.color, result)
