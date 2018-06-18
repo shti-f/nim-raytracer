@@ -1,15 +1,23 @@
-include vector3, ray, objects, constant, intersection, scene
+include constant, vector3, ray, scene, intersection
 import random
 
 const
     depthLimit = 5 # 反射する回数
 
 proc radiance* (ray: Ray, depth: int): Vector3 =
+    if depth == depthLimit: # 反射深度
+        return vector3()
     var intersection = near_intersection(ray)
-    if intersection == nil: return vector3(1,1,1)
-    if depth == depthLimit: return vector3()
-    result = vector3()
-    # DIFFUSE
+    if intersection == nil: # 衝突しない場合は暗い
+        # return vector3()
+        return vector3(1,1,1)
+
+    # if intersection.emission != vector3(): # 光源との衝突
+    #     return intersection.emission
+    
+    result = vector3() # radianceの初期化
+    
+    # DIFFUSE(完全拡散面)
     # orienting_normalの方向を基準とした正規直交基底(w, u, v)を作る。この基底に対する半球内で次のレイを飛ばす。
     var orienting_normal =
         if dot(intersection.normal , ray.direction) < 0.0: intersection.normal
@@ -21,14 +29,11 @@ proc radiance* (ray: Ray, depth: int): Vector3 =
     else:
         u = normalize(cross(vector3(1.0, 0.0, 0.0), w))
     v = cross(w, u)
-    # return v / 2 + vector3(0.5, 0.5, 0.5) # s
-    # return u / 2 + vector3(0.5, 0.5, 0.5) # tan
     
     # コサイン項を使った重点的サンプリング
     let
-        phi = 2 * kPI * rand(1.0) # 半球のxy方向の回転
-        theta = arccos(rand(1.0)) # z方向、仰角
-    var new_ray = Ray(origin: intersection.position, direction: normalize(u * cos(phi) * cos(theta) + v * sin(phi) * cos(theta)  + w * sin(theta)))
-    # return new_ray.direction
+        phi = 2 * kPI * rand(1.0) # 半球の360度回転方向
+        theta = arccos(rand(1.0)) # 仰角
+    var new_ray = ray(intersection.position, normalize(u * cos(phi) * cos(theta) + v * sin(phi) * cos(theta)  + w * sin(theta)))
     result = result + radiance(new_ray, depth + 1) # incoming_radiance
     result = mult(intersection.color, result)

@@ -3,6 +3,7 @@ type Intersection* = ref object of RootObj
     position*: Vector3
     normal*: Vector3 # 法線ベクトル
     color*: Vector3
+    emission*: Vector3
 
 # 衝突判定
 proc intersect*(r: Ray, sphere: Sphere): Intersection =
@@ -22,4 +23,15 @@ proc intersect*(r: Ray, sphere: Sphere): Intersection =
     var
         position = r.origin + distance * r.direction
         normal = (position - sphere.position).normalize
-    return Intersection(distance: distance, position: position, normal: normal, color: sphere.color)
+    return Intersection(distance: distance, position: position, normal: normal, emission: sphere.emission, color: sphere.color)
+
+proc near_intersection*(ray: Ray): Intersection =
+    result = Intersection(distance: kINF)
+    for sphere in spheres:
+        var intersection = intersect(ray, sphere)
+        if intersect(ray, sphere) != nil and intersection.distance < result.distance:
+            result = intersection
+    if result.distance == kINF:
+        return nil
+
+    
