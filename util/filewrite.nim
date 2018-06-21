@@ -1,5 +1,8 @@
 import math, times
 
+import ../edupt, vector3
+type Img* = array[width, array[height, Vector3]]
+
 # clampとtoInt
 proc clamp(x: float): float =
     if x < 0:

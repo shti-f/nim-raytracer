@@ -1,9 +1,9 @@
-import util/radiance, util/fileWrite
+import util/radiance
 import random, locks
 
 const
-    width = 512
-    height = 512
+    width* = 512
+    height* = 512
 
 # cameraの配置
 type Camera = ref object of RootObj
@@ -16,7 +16,9 @@ const
     samples = 10 # １つのピクセルからrayを飛ばす回数
 
 # imgにレンダリング結果を入れていく
-var img: array[width, array[height, Vector3]]
+
+import util/fileWrite
+var img : Img
 for x in 0..<width: # 右にx、下にy、奥にz
     for y in 0..<height:
         # z軸負方向にあるスクリーンからピンホールに向けてrayを飛ばす
