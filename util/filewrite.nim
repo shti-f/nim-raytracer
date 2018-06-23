@@ -13,7 +13,7 @@ proc clamp(x: float): float =
         x
 
 proc to255(x: float): int =
-    int(clamp(x) * 255)
+    int(pow(clamp(x), 1 / 2.2) * 255)
 
 # ppmの出力
 proc ppmFileWrite*(img: auto) =
@@ -30,6 +30,6 @@ proc ppmFileWrite*(img: auto) =
     f.writeLine "# The P3 means colors are in ASCII, then " & $width & " columns and " & $height & " rows, then 255 for max color, then RGB triplets"
     f.writeLine $width & " " & $height
     f.writeLine "255"
-    for y in low(img[0])..high(img[0]):
+    for y in countdown(high(img[0]),low(img[0])):
         for x in low(img)..high(img):
             f.writeLine $to255(img[x][y][0]) & " " & $to255(img[x][y][1]) & " " & $to255(img[x][y][2])

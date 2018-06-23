@@ -1,5 +1,5 @@
-include constant, vector3, ray, scene, intersection
-import random
+import random, math
+import constant, vector3, ray, scene, intersection
 
 const
     depthLimit = 5 # 反射する回数
@@ -9,11 +9,11 @@ proc radiance* (ray: Ray, depth: int): Vector3 =
         return vector3()
     var intersection = near_intersection(ray)
     if intersection == nil: # 衝突しない場合は暗い
-        # return vector3()
-        return vector3(1,1,1)
+        return vector3()
+        # return vector3(1,1,1)
 
-    # if intersection.emission != vector3(): # 光源との衝突
-    #     return intersection.emission
+    if intersection.emission != vector3(): # 光源との衝突
+        return intersection.emission
     
     result = vector3() # radianceの初期化
 
@@ -31,6 +31,8 @@ proc radiance* (ray: Ray, depth: int): Vector3 =
             else:
                 u = normalize(cross(vector3(1.0, 0.0, 0.0), w))
             v = cross(w, u)
+
+            # return w / 2 + vector3(0.5)
 
             # コサイン項を使った重点的サンプリング
             let

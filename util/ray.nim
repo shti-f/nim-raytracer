@@ -1,3 +1,5 @@
+import vector3
+
 # Rayの定義
 type Ray* = ref object of RootObj
     origin*: Vector3

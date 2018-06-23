@@ -1,3 +1,6 @@
+import math
+import constant, vector3, ray, scene
+
 type Intersection* = ref object of RootObj
     distance*: float
     position*: Vector3
@@ -7,22 +10,22 @@ type Intersection* = ref object of RootObj
     surface*: SurfaceType
 
 # 衝突判定
-proc intersect*(r: Ray, sphere: Sphere): Intersection =
+proc intersect*(ray: Ray, sphere: Sphere): Intersection =
     var
-        po = r.origin - sphere.position
-        det = pow(r.direction.dot(po), 2) - po.dot(po) + pow(sphere.radius, 2) # rayとsphereの判別式
+        po = ray.origin - sphere.position
+        det = pow(ray.direction.dot(po), 2) - po.dot(po) + pow(sphere.radius, 2) # rayとsphereの判別式
     if det < 0: # 判別式負、当たらない
         return nil
     var
-        tminus = - r.direction.dot(po) - det.sqrt
-        tplus = - r.direction.dot(po) + det.sqrt
+        tminus = - ray.direction.dot(po) - det.sqrt
+        tplus = - ray.direction.dot(po) + det.sqrt
     if tminus < kEPS and tplus < kEPS: # 近すぎるrayと両方マイナスは排除
         return nil
     var distance =
         if tminus < 0: tplus # マイナスがカメラより後ろにある場合
         else:          tminus # sphereに2回当たる手前
     var
-        position = r.origin + distance * r.direction
+        position = ray.origin + distance * ray.direction
         normal = (position - sphere.position).normalize
     return Intersection(distance: distance, position: position, normal: normal, emission: sphere.emission, color: sphere.color, surface: sphere.surface)
 

@@ -3,8 +3,14 @@ import math
 # Vector3の定義
 type Vector3* = array[3, float]
 
-proc vector3*(x = 0.0, y = 0.0, z = 0.0): Vector3 =
+proc vector3*(): Vector3 =
+    [0.0, 0.0, 0.0]
+
+proc vector3*(x: float, y: float, z: float): Vector3 =
     [x, y, z]
+
+proc vector3*(x: float): Vector3 =
+    [x, x, x]
 
 # proc `$` (a: Vector3): string =
 #     "[" & $a[0] & ", " & $a[1] & ", " & $a[2] & "]"
